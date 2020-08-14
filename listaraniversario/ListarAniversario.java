@@ -15,11 +15,13 @@ public class ListarAniversario {
 //        
 //        System.out.println(intervalo.getDays() + " " + intervalo.getMonths());
 //        System.out.println(idade);
-        Aniversario aniversario1 = new Aniversario();
-        aniversario1.setNome("Gabriel");
-        aniversario1.setDataAniversario(LocalDate.of(2001, 1, 17));
+        Aniversariante aniversariante1 = new Aniversariante();
+        aniversariante1.setNome("Gabriel");
+        aniversariante1.setDataAniversario(LocalDate.of(2001, 8, 14));
         
-        System.out.println(aniversario1);
+        System.out.println(aniversariante1);
+        System.out.println(aniversariante1.getIdade());
+        System.out.println(aniversariante1.getProximoAniversarioString());
     }
     
 }
