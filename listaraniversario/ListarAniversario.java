@@ -14,6 +14,7 @@ public class ListarAniversario {
                                "3. Atualizar os dados de uma pessoa\n" + 
                                "4. Mostrar os dados de uma pessoa\n" +
                                "5. Listar todas as pessoas\n" +
+                               "6. Ordenar pelas datas mais próximas\n" +
                                "6. Sair\n"
             );
             while(true){
@@ -104,9 +105,11 @@ public class ListarAniversario {
                                                         aniversariante.getProximoAniversarioString()
                     );
                 }
+            }else if(opcao == 6){
+                aniversariantes.sort();
             }
             
-        }while(opcao != 6);
+        }while(opcao != 7);
     }
     
 }
