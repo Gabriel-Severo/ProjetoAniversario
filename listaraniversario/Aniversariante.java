@@ -3,7 +3,7 @@ package listaraniversario;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Aniversariante {
+public class Aniversariante implements Comparable<Aniversariante>{
     private LocalDate dataAniversario;
     private String nome;
     
@@ -42,9 +42,9 @@ public class Aniversariante {
         }else if(intervalo.getMonths() == 0 && intervalo.getDays() == 0){
             return "É hoje";
         }else{
-            return  (intervalo.getMonths() == 0 ? "" : intervalo.getMonths() > 1 ? 
-                    intervalo.getMonths() + " meses e " : intervalo.getMonths() + " mes e ") +
-                    intervalo.getDays() + " dias";
+            return (intervalo.getMonths() == 0 ? "" : intervalo.getMonths() > 1 ? 
+                   intervalo.getMonths() + " meses e " : intervalo.getMonths() + " mes e ") +
+                   intervalo.getDays() + " dias";
         }
     }
     
@@ -52,6 +52,16 @@ public class Aniversariante {
         LocalDate dataAtual = LocalDate.now();
         Period intervalo = Period.between(dataAtual, dataAniversario.withYear(dataAtual.getYear()));
         return intervalo;
+    }
+    
+    @Override
+    public int compareTo(Aniversariante aniversariante){
+        if(dataAniversario.isBefore(aniversariante.getDataAniversario())){
+            return 1;
+        }else if(dataAniversario.isAfter(aniversariante.getDataAniversario())){
+            return -1;
+        }
+        return 0;
     }
     
 }
