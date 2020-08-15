@@ -6,12 +6,10 @@ import java.util.Arrays;
 public class AniversarianteList<E> extends AbstractList<E> implements IAniversarianteList<E> {
     private E[] aniversariantes;
     private int index;
-    private int size;
     
     public AniversarianteList(){
         index = 0;
-        size = 1;
-        aniversariantes = (E[]) new Object[1];
+        aniversariantes = (E[]) new Object[0];
     }
     
     @Override
@@ -37,16 +35,7 @@ public class AniversarianteList<E> extends AbstractList<E> implements IAniversar
     
     @Override
     public void sort(){
-        aniversariantes = removeNulls(aniversariantes);
         Arrays.sort(aniversariantes);
-    }
-    
-    public E[] removeNulls(E[] aniversariante) {
-        E[] arrayCopy = (E[]) new Object[index];
-        for(int i = 0; i < index; i++){
-            arrayCopy[i] = aniversariantes[i];
-        }
-        return arrayCopy;
     }
     
     @Override
@@ -54,23 +43,22 @@ public class AniversarianteList<E> extends AbstractList<E> implements IAniversar
         if(index > size() || index < 0 || aniversariantes[index] == null){
             throw new ArrayIndexOutOfBoundsException();
         }
+        
         E elemento = aniversariantes[index];
-        aniversariantes[index] = null;
-        for(int i = index; i < aniversariantes.length-1; i++){
-            aniversariantes[i] = aniversariantes[i+1];
+        E[] aux = Arrays.copyOfRange(aniversariantes, 0, size()-1);
+        
+        for(int i = index; i < size()-1; i++){
+            aux[i] = aniversariantes[i+1];
         }
+        aniversariantes = aux;
         this.index--;
         return elemento;
     }
     
     @Override
     public boolean add(E aniversariante){
-        if(index < size()){
-            aniversariantes[index++] = aniversariante;
-        }else{
-            aniversariantes = Arrays.copyOfRange(aniversariantes, 0, ++size);
-            aniversariantes[index++] = aniversariante;
-        }
+        aniversariantes = Arrays.copyOfRange(aniversariantes, 0, size()+1);
+        aniversariantes[index++] = aniversariante;
         return true;
     }
     
