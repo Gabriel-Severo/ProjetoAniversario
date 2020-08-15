@@ -7,6 +7,11 @@ public class Aniversariante implements Comparable<Aniversariante>{
     private LocalDate dataAniversario;
     private String nome;
     
+    public Aniversariante(String nome, LocalDate data){
+        this.dataAniversario = data;
+        this.nome = nome;
+    }
+    
     public LocalDate getDataAniversario(){
         return dataAniversario;
     }

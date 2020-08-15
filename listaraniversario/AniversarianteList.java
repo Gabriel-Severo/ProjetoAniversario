@@ -68,10 +68,13 @@ public class AniversarianteList<E> extends AbstractList<E> implements IAniversar
         if(index < size()){
             aniversariantes[index++] = aniversariante;
         }else{
-            size *= 2;
-            aniversariantes = Arrays.copyOfRange(aniversariantes, 0, size);
+            aniversariantes = Arrays.copyOfRange(aniversariantes, 0, ++size);
             aniversariantes[index++] = aniversariante;
         }
         return true;
+    }
+    
+    public int getIndex(){
+        return index;
     }
 }
