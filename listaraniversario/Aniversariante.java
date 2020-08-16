@@ -61,10 +61,13 @@ public class Aniversariante implements Comparable<Aniversariante>{
     
     @Override
     public int compareTo(Aniversariante aniversariante){
-        if(dataAniversario.isBefore(aniversariante.getDataAniversario())){
-            return 1;
-        }else if(dataAniversario.isAfter(aniversariante.getDataAniversario())){
+        LocalDate dataAtual = LocalDate.now();
+        LocalDate data1 = dataAniversario.withYear(dataAtual.getYear());
+        LocalDate data2 = aniversariante.getDataAniversario().withYear(dataAtual.getYear());
+		if(data1.isBefore(data2)){
             return -1;
+        }else if(data2.isBefore(data1)){
+            return 1;
         }
         return 0;
     }
